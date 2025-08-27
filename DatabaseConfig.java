@@ -10,9 +10,9 @@ public class DatabaseConfig {
     static {
         HikariConfig config = new HikariConfig();
         config.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        config.setJdbcUrl("jdbc:sqlserver://36.255.68.74:1433;databaseName=CBRM;encrypt=true;trustServerCertificate=true");
-        config.setUsername("Aabid");
-        config.setPassword("sa");
+        config.setJdbcUrl("jdbc:sqlserver://remote-host-ip:port;databaseName=dbname;encrypt=true;trustServerCertificate=true");
+        config.setUsername("db-user");
+        config.setPassword("db-password");
         config.setMaximumPoolSize(1000);
         config.setMinimumIdle(500);
         config.setIdleTimeout(5);
