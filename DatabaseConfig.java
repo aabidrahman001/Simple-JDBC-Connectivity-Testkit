@@ -12,7 +12,7 @@ public class DatabaseConfig {
         config.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         config.setJdbcUrl("jdbc:sqlserver://36.255.68.74:1433;databaseName=CBRM;encrypt=true;trustServerCertificate=true");
         config.setUsername("Aabid");
-        config.setPassword("sa");
+        config.setPassword("JEmLJ5HFlRA=");
         config.setMaximumPoolSize(1000);
         config.setMinimumIdle(500);
         config.setIdleTimeout(5);
