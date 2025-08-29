@@ -6,24 +6,25 @@ import java.sql.SQLException;
 
 public class DatabaseConfig {
     private static HikariDataSource dataSource;
-
-    static {
+    
+    public static void init(String jdbcUrl, String username, String password, String driverClass) {
         HikariConfig config = new HikariConfig();
-        config.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        config.setJdbcUrl("jdbc:sqlserver://remote-host-ip:port;databaseName=dbname;encrypt=true;trustServerCertificate=true");
-        config.setUsername("db-user");
-        config.setPassword("db-password");
-        config.setMaximumPoolSize(1000);
-        config.setMinimumIdle(500);
-        config.setIdleTimeout(5);
+        config.setDriverClassName(driverClass);
+        config.setJdbcUrl(jdbcUrl);
+        config.setUsername(username);
+        config.setPassword(password);
+        config.setMaximumPoolSize(5);
         config.setMinimumIdle(1);
-        config.setMaximumPoolSize(20);
-        config.setConnectionTimeout(500); // Set to 250ms or higher
+        config.setConnectionTimeout(5000);
+        config.setIdleTimeout(30000);
 
         dataSource = new HikariDataSource(config);
     }
 
     public static Connection getConnection() throws SQLException {
+        if (dataSource == null) {
+            throw new IllegalStateException("DatabaseConfig not initialized. Call init() first.");
+        }
         return dataSource.getConnection();
     }
 }
